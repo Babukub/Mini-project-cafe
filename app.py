@@ -266,3 +266,31 @@ class CafeApp(tk.Tk):
         self.manage_tree.delete(*self.manage_tree.get_children())
         for m in self.cafe.search_menu():
             self.manage_tree.insert("", "end", iid=str(m.id), values=(m.id, m.name, m.LABEL, f"{m.price:.0f}"))
+            
+# ------------------------------------------------------------------
+# แท็บ 3: สรุปยอดขาย
+# ------------------------------------------------------------------
+    def _build_report_tab(self):
+        self.report_label = ttk.Label(self.tab_report, text="", font=("TkDefaultFont", 12, "bold"), justify="left")
+        self.report_label.pack(anchor="w", padx=12, pady=12)
+        self.history_tree = ttk.Treeview(self.tab_report, columns=("id", "time", "cust", "items", "total"),
+                                         show="headings", height=16)
+        for col, text, w in [("id", "ออเดอร์", 70), ("time", "เวลา", 130), ("cust", "ลูกค้า", 140),
+                             ("items", "รายการ", 380), ("total", "สุทธิ", 90)]:
+            self.history_tree.heading(col, text=text)
+            self.history_tree.column(col, width=w, anchor="center" if col != "items" else "w")
+        self.history_tree.pack(fill="both", expand=True, padx=12, pady=(0, 12))
+
+    def refresh_report(self):
+        self.report_label.config(text=(f"จำนวนออเดอร์: {len(self.cafe.history)}\n"
+                                       f"ยอดขายรวม: {self.cafe.total_sales():.2f} บาท\n"
+                                       f"เมนูขายดี: {self.cafe.best_seller()}"))
+        self.history_tree.delete(*self.history_tree.get_children())
+        for r in reversed(self.cafe.history):
+            text = ", ".join(f"{i['name']} x{i['qty']}" for i in r["items"])
+            self.history_tree.insert("", "end", values=(r["order_id"], r["time"], r["customer"], text, f"{r['total']:.2f}"))
+
+
+if __name__ == "__main__":
+    CafeApp().mainloop()
+
