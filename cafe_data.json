@@ -1,0 +1,50 @@
+{
+  "next_menu_id": 8,
+  "next_order_id": 1,
+  "menu": [
+    {
+      "kind": "drink",
+      "id": 1,
+      "name": "อเมริกาโน่",
+      "price": 50.0
+    },
+    {
+      "kind": "drink",
+      "id": 2,
+      "name": "ลาเต้",
+      "price": 60.0
+    },
+    {
+      "kind": "drink",
+      "id": 3,
+      "name": "ชาไทย",
+      "price": 45.0
+    },
+    {
+      "kind": "drink",
+      "id": 4,
+      "name": "โกโก้เย็น",
+      "price": 55.0
+    },
+    {
+      "kind": "dessert",
+      "id": 5,
+      "name": "บราวนี่",
+      "price": 65.0
+    },
+    {
+      "kind": "dessert",
+      "id": 6,
+      "name": "ชีสเค้ก",
+      "price": 80.0
+    },
+    {
+      "kind": "dessert",
+      "id": 7,
+      "name": "วาฟเฟิล",
+      "price": 70.0
+    }
+  ],
+  "members": [],
+  "history": []
+}
